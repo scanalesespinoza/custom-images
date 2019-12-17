@@ -1,0 +1,27 @@
+kind: BuildConfig
+apiVersion: v1
+metadata:
+  name: php-custom
+  creationTimestamp: 
+  labels:
+    name: php-custom
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/scanalesespinoza/custom-images.git
+      ref: master
+    contextDir: php
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: php-custom:latest
+  output:
+    to:
+      kind: ImageStreamTag
+      name: php-custom-is:latest
+  resources: {}
+status:
+  lastVersion: 0
